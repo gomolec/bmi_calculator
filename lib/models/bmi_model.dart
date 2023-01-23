@@ -1,4 +1,5 @@
-import 'package:flutter/widgets.dart';
+import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 
 enum BmiType {
   severeThinness("wygłodzenie", Color(0xFF0080BD), "< 16,0"),
@@ -14,4 +15,32 @@ enum BmiType {
   final Color color;
   final String range;
   const BmiType(this.text, this.color, this.range);
+}
+
+class Bmi extends Equatable {
+  final double value;
+  final BmiType type;
+
+  const Bmi({
+    required this.value,
+    required this.type,
+  });
+
+  @override
+  List<Object> get props => [value, type];
+
+  Bmi copyWith({
+    double? value,
+    BmiType? type,
+  }) {
+    return Bmi(
+      value: value ?? this.value,
+      type: type ?? this.type,
+    );
+  }
+
+  @override
+  String toString() {
+    return 'Bmi(value: $value, type: $type)';
+  }
 }

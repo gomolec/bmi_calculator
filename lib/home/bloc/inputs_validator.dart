@@ -1,4 +1,4 @@
-class Validator {
+class InputsValidator {
   String? validate({
     required String primaryValue,
     required String secondaryValue,

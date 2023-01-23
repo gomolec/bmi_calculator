@@ -3,11 +3,11 @@ import 'dart:developer';
 import 'package:bloc/bloc.dart';
 
 class AppBlocObserver extends BlocObserver {
-  @override
-  void onEvent(Bloc<dynamic, dynamic> bloc, dynamic event) {
-    super.onEvent(bloc, event);
-    log('onEvent(${bloc.runtimeType}, $event)');
-  }
+  // @override
+  // void onEvent(Bloc<dynamic, dynamic> bloc, dynamic event) {
+  //   super.onEvent(bloc, event);
+  //   log('onEvent(${bloc.runtimeType}, $event)');
+  // }
 
   @override
   void onChange(BlocBase<dynamic> bloc, Change<dynamic> change) {

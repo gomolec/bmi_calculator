@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../bloc/calculator_bloc.dart';
+import '../../bloc/bmi_bloc.dart';
 
 class ResultsCard extends StatelessWidget {
   const ResultsCard({
@@ -11,10 +10,10 @@ class ResultsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
-      child: BlocBuilder<CalculatorBloc, CalculatorState>(
-        buildWhen: (previous, current) => previous.bmiType != current.bmiType,
+      child: BlocBuilder<BmiBloc, BmiState>(
+        buildWhen: (previous, current) => previous.bmi != current.bmi,
         builder: (context, state) {
-          if (state.bmiType != null) {
+          if (state.bmi != null) {
             return Card(
               elevation: 0,
               shape: RoundedRectangleBorder(
@@ -45,15 +44,15 @@ class ResultsCard extends StatelessWidget {
                           decoration: BoxDecoration(
                             border: Border.all(
                               width: 2.0,
-                              color: state.bmiType!.color,
+                              color: state.bmi!.type.color,
                             ),
                             borderRadius: const BorderRadius.all(
                               Radius.circular(16.0),
                             ),
-                            color: state.bmiType!.color.withOpacity(0.16),
+                            color: state.bmi!.type.color.withOpacity(0.16),
                           ),
                           child: Text(
-                            "${state.bmiResult} kg/m2",
+                            "${state.bmi!.value} kg/m2",
                             style: Theme.of(context)
                                 .textTheme
                                 .displaySmall!
@@ -75,7 +74,7 @@ class ResultsCard extends StatelessWidget {
                               style: Theme.of(context).textTheme.labelLarge,
                             ),
                             Text(
-                              state.bmiType!.text,
+                              state.bmi!.type.text,
                               style: Theme.of(context).textTheme.bodyLarge,
                             ),
                           ],
@@ -89,7 +88,7 @@ class ResultsCard extends StatelessWidget {
                               style: Theme.of(context).textTheme.labelLarge,
                             ),
                             Text(
-                              state.bmiType!.range,
+                              state.bmi!.type.range,
                               style: Theme.of(context).textTheme.bodyLarge,
                             ),
                           ],
